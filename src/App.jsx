@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Form from './Form'
+import "./styles/resumestyles.css"
 
 function Header({name, email, number}) {
   return (
@@ -11,6 +13,18 @@ function Header({name, email, number}) {
   )
 }
 
+function Education({ education }) {
+
+}
+  
+function Experience({ experiences }) {
+
+}
+
+function Skills({ education }) {
+
+}
+
 
 export default function App() {
   const info = {
@@ -19,8 +33,11 @@ export default function App() {
     number: 4164515682
   }
   return (
-    <div className="resume">
-      <Header name={info.name} email={info.email} number={info.number}/>
-    </div>
+    <>
+      <Form/>
+      <div className="resume">
+        <Header name={info.name} email={info.email} number={info.number}/>
+      </div>
+    </>
   )
 }
