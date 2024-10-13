@@ -1,21 +1,24 @@
 import styled from "styled-components";
 import { Form } from "formik";
-import { TextInput } from "../components/FormInputs";
 
 const StyledInput = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 1rem;
 `
 const StyledTextInput = styled.input`
   background-color: white;
 `
 
 const ErrorText = styled.div`
-
+  color: red;
 `
 
 const SubmitButton = styled.button`
 
 `
 
-export { StyledInput, StyledTextInput, ErrorText, SubmitButton }
+const StyledForm = styled(Form)`
+`
+
+export { StyledInput, StyledTextInput, StyledForm, ErrorText, SubmitButton }

@@ -1,6 +1,9 @@
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import { TextInput } from "./FormInputs";
+import { useState } from 'react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import DisplayData from './DisplayData';
+import { TextInput } from './FormInputs';
+import { StyledForm } from '../styles/formstyles';
 
 const schema = Yup.object({
   firstName: Yup.string()
@@ -9,39 +12,64 @@ const schema = Yup.object({
   lastName: Yup.string()
     .max(20, "Must be 20 characters or less")
     .required("Required"),
-  email: Yup.string().email("Invalid email address").required("Required"),
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Required"),
+  phone: Yup.string()
+    .matches("^[0-9]{10}$", "Invalid phone number")
+    .required("Required"),
 });
 
-const onSubmit = (values, { setSubmitting }) => {
-  setTimeout(() => {
-    alert(JSON.stringify(values, null, 2));
-    setSubmitting(false);
-  }, 400);
-};
-
 const InfoForm = () => {
+  const [formData, setFormData] = useState(null);
+
+  const onSubmit = (values, { setSubmitting }) => {
+    setFormData(values);
+    setSubmitting(false);
+  };
+
   return (
-    <Formik
-      initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
-      }}
-      validationSchema={schema}
-      onSubmit={onSubmit}
-    >
-      <Form>
-        <TextInput
-          label="First Name"
-          name="firstName"
-          type="text"
-          placeholder="Jane"
-        />
-        <TextInput
-          label="Last name"
-        ></TextInput>
-      </Form>
-    </Formik>
+    <div style={{ display: 'flex' }}>
+      <Formik
+        initialValues={{
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "" 
+        }}
+        validationSchema={schema}
+        onSubmit={onSubmit}
+      >
+        <StyledForm>
+          <TextInput
+            label="First Name"
+            name="firstName"
+            type="text"
+            placeholder="Jane"
+          />
+          <TextInput
+            label="Last Name"
+            name="lastName"
+            type="text"
+            placeholder="Doe"
+          />
+          <TextInput
+            label="Email"
+            name="email"
+            type="email"
+            placeholder="jane.doe@example.com"
+          />
+          <TextInput
+            label="Phone"
+            name="phone"
+            type="text"
+            placeholder="1234567890"
+          />
+          <button type="submit">Submit</button>
+        </StyledForm>
+      </Formik>
+      {formData && <DisplayData data={formData} />}
+    </div>
   );
 };
 
