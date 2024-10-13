@@ -1,39 +1,36 @@
-import { Formik } from "formik";
+import { useState } from "react";
 
-const Fieldset = ({ name }) => {
+const ResumeSection = ({ children }) => {
+  const [isOpen, setIsOpen] = useState(true);
+
+  function toggleOpen() {
+    setIsOpen(!isOpen);
+  }
+
+  if(!isOpen) {
+    return (
+      <fieldset>
+        <button
+          type="button"
+          onClick={toggleOpen}
+        >
+          Open
+        </button>
+      </fieldset>
+    );
+  }
+
   return (
     <fieldset>
-      <label htmlFor={name}></label>
+      <button
+        type="button"
+        onClick={toggleOpen}
+      >
+        Close
+      </button>
+      {children}
     </fieldset>
   );
 };
 
-function PersonalFieldset() {
-  return (
-    <fieldset>
-      <label htmlFor="name">
-        Email: <input type="email" name="email" required />
-      </label>
-      <label htmlFor="email">
-        Email: <input type="email" name="email" required />
-      </label>
-      <label htmlFor="phone">
-        Phone:{" "}
-        <input
-          type="tel"
-          name="phone"
-          pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-          required
-        />
-      </label>
-    </fieldset>
-  );
-}
-
-function WorkFieldset() {
-  return <fieldset></fieldset>;
-}
-
-function SkillsFieldset() {
-  return <fieldset></fieldset>;
-}
+export default ResumeSection;

@@ -1,7 +1,6 @@
 import { StyledInput, StyledTextInput, ErrorText } from "../styles/formstyles";
 import { useField } from "formik";
 
-// eslint-disable-next-line react/prop-types
 const TextInput = ({ label, ...props }) => {
   const [field, meta] = useField(props);
   return (
