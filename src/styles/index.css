@@ -4,9 +4,42 @@
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+  gap: 20px;
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+
+form {
+  min-width: 300px;
+}
+
+#resume {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  border: 1px solid black; 
+  padding: 10px; 
+}
+
+header {
+  text-align: center;
+}
+
+section {
+  margin: 10px 0;
+}
+section ul {
+  list-style: none;
+  margin-left: 10px;
+}
+
+hr {
+  border: 1px solid #888;
 }

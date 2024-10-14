@@ -28,7 +28,7 @@ const InfoForm = () => {
   };
 
   return (
-    <div style={{ display: "flex" }}>
+    <>
       <Formik
         initialValues={{
           firstName: "",
@@ -70,8 +70,8 @@ const InfoForm = () => {
           <button type="submit">Submit</button>
         </StyledForm>
       </Formik>
-      {formData && <DisplayData data={formData} />}
-    </div>
+      {formData ? <DisplayData data={formData} />:<DisplayData/>}
+    </>
   );
 };
 
